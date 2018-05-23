@@ -11,8 +11,8 @@
 	Date : 23rd May 2018
 '''
 #	Importing libraries
-import os		#	To traverse through the OS file system
-import pprint	#	To pretty print the dictionary output
+import os		#To traverse through the OS file system
+import pprint	#To pretty print the dictionary output
 
 #	Changed directory to where the contact file is saved in the file system
 os.chdir('/home/stak/Documents/DMA')
@@ -34,15 +34,15 @@ for record in raw_contacts_list:
 	
 	#	BEGIN and END hold one complete block of contact record
 	if('BEGIN' in record):
-		name_key = ''		#	Initialized as '' to store new name at each iteration	
-		num_value = []		#	Initialized as '' to store new contact list at each iteration
+		name_key = ''		#Initialized as '' to store new name at each iteration	
+		num_value = []		#Initialized as '' to store new contact list at each iteration
 
 	#	Contact name string (inside the list) includes FN: | So used to locate the contact name.
 	if('FN' in record):
 		name = record
-		name = name.replace('FN:','')	#	To clean the string of anything other than contacgt name (i.e FN:)
+		name = name.replace('FN:','')	#To clean the string of anything other than contact name (i.e FN:)
 
-		name_key = name[:-1]			#	Stored in name_key to clean \n from the name
+		name_key = name[:-1]			#Stored in name_key to clean \n from the name
 
 	#	Contact number string (inside the list) includes TEL;VOICE;PREF: or TEL;CELL:| So used to locate the contact number.
 	if('TEL;VOICE;PREF' in record or 'TEL;CELL' in record):
@@ -54,14 +54,14 @@ for record in raw_contacts_list:
 		number = number.replace('-','')
 		number = number.replace('+91','')
 
-		num_value.append(number[:-1])	#	Stored in num_key to clean \n from the number
+		num_value.append(number[:-1])	#Stored in num_key to clean \n from the number
 
 	#	Marks the end of the contact block
 	if('END' in record):
-		if(num_value == []):			#	Validation to not store blank contact as it creates ambiguity
+		if(num_value == []):			#Validation to not store blank contact as it creates ambiguity
 			continue
 		else:
-			contacts_dict.setdefault(name_key, num_value)	#	Contacts stored in contact dictionary
+			contacts_dict.setdefault(name_key, num_value)	#Contacts stored in contact dictionary
 
 #	Printing the Contact dictionary
 print('\nContact dictionary :\n')
@@ -72,14 +72,14 @@ duplicate_dict = {}
 
 #	Will iterate through contact dictionary to find duplicates 
 for key in contacts_dict.keys():
-	contact_name = key  				#	Taking key of contacts_dict as contact name
+	contact_name = key  				#Taking key of contacts_dict as contact name
 
-	dupli_list = []						#	Initializing the dupli_list which will store all the contact names that are duplicates
+	dupli_list = []						#Initializing the dupli_list which will store all the contact names that are duplicates
 	
 	#	Iterate through contact dictionary to check with each contact
 	for check_key in contacts_dict.keys():
 
-		if(key == check_key):			#	To validate for refrain from checking with same contact
+		if(key == check_key):			#To validate for refrain from checking with same contact
 			continue
 		else:
 			#	If contact number is same it will be stored in dupli_list as duplicate

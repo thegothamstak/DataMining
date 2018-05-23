@@ -5,14 +5,14 @@
 	Date : 23rd May 2018
 '''
 #	Importing libraries
-import os				#	To traverse through the OS file system
-from PIL import Image 	#	To open Image files
+import os				#To traverse through the OS file system
+from PIL import Image 	#To open Image files
 
 #	Function for image files
 def forImageFiles(file):
 
-	imageFile = Image.open(file)	#	Image object is created in imageFile
-	imageFile.show()				#	Will open the image file
+	imageFile = Image.open(file)	#Image object is created in imageFile
+	imageFile.show()				#Will open the image file
 
 	#	To rename the image file
 	imageFile.save(input('Enter new name for imageFile : '))
@@ -20,11 +20,11 @@ def forImageFiles(file):
 #	Function for text files
 def forTextFiles(file):
 
-	textFile = open(file, 'r')		#	File object is created in textFile
-	textContent = textFile.read()	#	File content is stored in textContent
-	textFile.close()				#	Close file object
+	textFile = open(file, 'r')		#File object is created in textFile
+	textContent = textFile.read()	#File content is stored in textContent
+	textFile.close()				#Close file object
 
-	print('Content of the file '+file+' is :\n')	#	Print fileContent
+	print('Content of the file '+file+' is :\n')	#Print fileContent
 	print(textContent)
 
 	#	Open another file (in append mode for now) to store the data with new name. (RENAME)
