@@ -76,7 +76,7 @@ def createFileList(path, file_list):
 				row_file_list.append(size)
 				row_file_list.append(checksum_val)
 
-				#print(row_file_list)
+				print(row_file_list)
 				file_list.append(row_file_list)
 
 def checkDuplicate(file_list, file_duplicate_list):
@@ -96,8 +96,8 @@ def checkDuplicate(file_list, file_duplicate_list):
 
 		row_list.append(duplicate_flag)
 		row_list.append(duplicate_list)
-
-		file_duplicate_list.append(row_list)			
+		print(row_list)
+		file_duplicate_list.append(row_list)
 
 file_list = [['Name','Path','Size','CheckSum']]
 file_duplicate_list = [['Name','Path','Size','CheckSum','Duplicate','Duplicate Files']]
@@ -106,5 +106,14 @@ os.chdir('/home/stak')
 path = os.getcwd()
 
 createFileList(path, file_list)
+checkDuplicate(file_list, file_duplicate_list)
 
-print(file_list)
+os.chdir('/home/stak/Documents/DMA')
+
+csv_file = open('duplicate.csv', 'w', newline = '')
+csv_writer = csv.writer(csv_file)
+
+for row in file_duplicate_list:
+	csv_writer.writerow(row)
+
+csv_file.close()
